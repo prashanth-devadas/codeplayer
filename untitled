@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Learning JQuery</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+    <style type="text/css">
+        
+        #topbar {
+            width:100%;
+            background-color: #DEDDDF;
+            border-bottom: 1px solid #838183;
+        }
+    
+    </style>
+       
+</head>
+
+<body>
+
+   <div id="topbar">
+
+
+
+   </div>
+
+
+
+<script type="text/javascript">
+
+    
+
+</script>
+
+</body>
+</html>
