@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 <head>
@@ -18,69 +17,205 @@
 
         body {
             margin: 0;
-            font-family: Verdana;
+            padding: 0;
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+            font-weight: 300;
         }
 
-        
-        #topbar {
-            margin: 0;
-            width:100%;
-            height: 40px;
-            background-color: #DEDDDF;
-            border-bottom: 1px solid #838183;
+        #menuBar {
+            width: 100%;
+            height:40px;
+            background-color: #e0e0e0;
+            border-bottom: 1px solid grey;
         }
 
-        p {
-            margin: 0;
-        }
-
-        #coderunner {
+        #logo {
             float: left;
-            padding: 7px 0 5px 10px;
-            font-size: 18px;
+            padding: 5px 0 3px 10px;
+            font-size: 1.2em;
             font-weight: bold;
         }
 
-        #topbar ul {
-            margin: 0;
-            padding: 5px 0 5px 550px;
+        #buttonDiv {
+            float: right;
+            padding: 1px 10px 3px 0px;                                                                                       
+        }
+
+        #buttonDiv button {
+            background-color: #B2B2B2;
+            font-size: 1.2em;
+            padding: 5px 10px;
             border-radius: 10px;
         }
 
-
-        #topbar ul li {
-            float: left;
+        #toggles {
+            width: 192px;
+            margin: 0 auto;
+            border:1px solid grey;
             list-style: none;
+            height: 27px;
+            border-radius: 3px;
+            padding: 0;
+            position: relative;
+            top: 5px;
+        }
+
+        #toggles li {
+            float: left;
+            border-right: 1px solid grey;
+            padding: 5px 6px;
+        }
+
+        .clear {
+            clear:both;
+        }
+
+        .codeContainer {
+            float: left;
+            height: 100%;
+            width: 50%;
+            position: relative;
+        }
+
+
+        .codeContainer textarea {
+            width: 100%;
+            height: 100%;
+            border:none;
+            border-right: 1px solid grey;
+            font-family: monotype;
+            font-size: 1em;
+            box-sizing:border-box;
             padding: 5px;
-            border: 1px solid #838183;
+        }
+
+        .codeLabel {
+            position: absolute;
+            right: 10px;
+            top: 10px;
         }
     
+        #CSSContainer, #JSContainer {
+            display: none;
+        }
+
+        iframe {
+            height: 100%;
+            position: relative;
+            left: 20px;
+            border: none;
+        }
+
+        .selected {
+            background-color: grey;
+        }
+
     </style>
        
 </head>
 
 <body>
 
-   <div id="topbar">
+    <div id="wrapper">
 
-        <p id="coderunner">CodePlayer</p>
+        <div id="menuBar">
 
-        <ul id="codes">
+            <div id="logo">
 
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JS</li>
-            <li>Result</li>
+                CodePlayer
 
-        </ul>
+            </div>
 
-   </div>
+
+            <div id="buttonDiv">
+
+                <button id="runButton">Run</button>
+
+            </div>
+
+            <ul id="toggles">
+
+                <li class="toggle selected">HTML</li>
+                <li class="toggle ">CSS</li>
+                <li class="toggle ">JS</li>
+                <li class="toggle selected" style="border:none">Result</li>
+
+            </ul>
+
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="codeContainer" id="HTMLContainer">
+
+           <div class="codeLabel">HTML</div>
+
+           <textarea id="htmlCode">Example Code</textarea>
+           
+        </div>
+
+        <div class="codeContainer" id="CSSContainer">
+
+           <div class="codeLabel">CSS</div>
+
+           <textarea id="cssCode">Example Code</textarea>
+           
+        </div>
+
+        <div class="codeContainer" id="JSContainer">
+
+           <div class="codeLabel">JS</div>
+
+           <textarea id="jsCode">Example Code</textarea>
+           
+        </div>
+
+        <div class="codeContainer" id="ResultContainer">
+
+           <div class="codeLabel">Result</div>
+
+           <iframe src=""></iframe>
+           
+        </div>
+l
+
+    </div>
+
 
 
 
 <script type="text/javascript">
 
-    
+var windowHeight = $(window).height();
+var menuBarHeight = $("#menuBar").height();
+
+var codeContainerHeight = windowHeight - menuBarHeight;
+
+$(".codeContainer").height(codeContainerHeight+"px");
+
+$(".toggle").click(function () {
+    // body...
+    $(this).toggleClass("selected");
+
+    var activeDiv = $(this).html();
+
+    $("#"+activeDiv+"Container").toggle();
+
+    var showingDivs=$(".codeContainer").filter(function(){
+        return($(this).css("display")!="none")
+    }).length;
+
+    var width = 100/showingDivs;
+
+    $(".codeContainer").width(width+"%");
+});
+
+
+$("#runButton").click(function(){
+
+    $("iframe").contents().find("html").html("<script>"+$("#cssCode").val()$("#htmlCode").val());
+
+});
 
 </script>
 
